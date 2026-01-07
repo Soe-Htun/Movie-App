@@ -1,6 +1,19 @@
 # MovieApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.2.
+Angular movie search SPA for TMDB with a local watchlist.
+
+## Reactivity choice
+
+Signals are used for state and view models across features. HTTP is handled with async/await while signals drive component rendering and caching behavior.
+
+## Configuration
+
+Update `src/environments/environment.ts`:
+
+- `tmdbApiKey`: set your TMDB v3 API key.
+- `useMock`: set `true` (or leave API key empty) to load `public/mock/*.json`.
+
+## Development server
 
 ## Development server
 

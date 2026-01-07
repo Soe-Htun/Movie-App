@@ -1,0 +1,24 @@
+<section class="watchlist">
+  <header>
+    <p class="eyebrow">Your list</p>
+    <h1>Watchlist</h1>
+    <p class="sub">Movies you have saved for later.</p>
+  </header>
+
+  <ng-container *ngIf="watchlist.items().length; else empty">
+    <div class="grid">
+      <app-movie-card
+        *ngFor="let movie of watchlist.items(); trackBy: trackById"
+        [movie]="movie"
+        [link]="['/movie', movie.id]"
+        [showWatchlistAction]="true"
+        [inWatchlist]="true"
+        (toggleWatchlist)="watchlist.toggle(movie)"
+      />
+    </div>
+  </ng-container>
+
+  <ng-template #empty>
+    <app-empty-state message="Your watchlist is empty." />
+  </ng-template>
+</section>

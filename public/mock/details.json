@@ -1,0 +1,72 @@
+{
+  "id": 101,
+  "title": "Lumen Drift",
+  "poster_path": "/kqjL17yufvn9OVLyXYpvtyrFfak.jpg",
+  "release_date": "2023-09-14",
+  "vote_average": 7.8,
+  "overview": "A drifting salvage crew discovers a light anomaly that rewrites their memories, forcing them to decide what to keep and what to lose.",
+  "genres": [
+    { "id": 878, "name": "Science Fiction" },
+    { "id": 12, "name": "Adventure" }
+  ],
+  "runtime": 124,
+  "credits": {
+    "cast": [
+      {
+        "id": 201,
+        "name": "Arielle Lane",
+        "character": "Captain Mira Voss",
+        "profile_path": "/xqR4ABkFTFYe8NDJi3knwWX7zfn.jpg"
+      },
+      {
+        "id": 202,
+        "name": "Jonas Steele",
+        "character": "Rook",
+        "profile_path": "/e2Jd0sYw9dXv9L6r9LJX6H2m4xY.jpg"
+      },
+      {
+        "id": 203,
+        "name": "Ren Ito",
+        "character": "Dr. Sato",
+        "profile_path": "/q9E3tc9v7i7K98P0rS1TqfVKd3t.jpg"
+      },
+      {
+        "id": 204,
+        "name": "Mara Noor",
+        "character": "Lyra",
+        "profile_path": "/kNnE1nJz4vSnBteRSroZ3s7nE8N.jpg"
+      },
+      {
+        "id": 205,
+        "name": "Pavel Okoro",
+        "character": "Tess",
+        "profile_path": "/eJQ1qhDnItG1Q6J79YJzMdoBDSq.jpg"
+      }
+    ]
+  },
+  "recommendations": {
+    "results": [
+      {
+        "id": 103,
+        "title": "Signal Breakers",
+        "poster_path": "/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+        "release_date": "2021-11-19",
+        "vote_average": 8.1
+      },
+      {
+        "id": 104,
+        "title": "Glass Meridian",
+        "poster_path": "/yF1eOkaYvwiORauRCPWznV9xVvi.jpg",
+        "release_date": "2020-06-22",
+        "vote_average": 7.1
+      },
+      {
+        "id": 105,
+        "title": "Orbit Bloom",
+        "poster_path": "/ugS5FVfCI3RJmMXFoh3xq5Z28bR.jpg",
+        "release_date": "2019-12-04",
+        "vote_average": 7.4
+      }
+    ]
+  }
+}

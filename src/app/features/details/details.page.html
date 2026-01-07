@@ -1,0 +1,93 @@
+<section class="details">
+  <div *ngIf="facade.status() === 'loading'" class="status">
+    <app-loading-state label="Loading movie details..." />
+  </div>
+
+  <div *ngIf="facade.status() === 'error'" class="status">
+    <app-error-banner [message]="facade.error() || ''" (retry)="facade.retry()" />
+  </div>
+
+  <div *ngIf="facade.status() === 'idle'" class="status">
+    <app-empty-state message="Select a movie to see details." />
+  </div>
+
+  <article *ngIf="facade.status() === 'success' && facade.details() as movie" class="content">
+    <a class="back" routerLink="/search">← Back to search</a>
+    <div class="hero-card">
+      <div class="poster">
+        <ng-container *ngIf="movie.posterPath; else posterPlaceholder">
+          <img
+            [src]="movie.posterPath | posterUrl : 'w342'"
+            [alt]="movie.title"
+            loading="lazy"
+            decoding="async"
+            referrerpolicy="no-referrer"
+          />
+        </ng-container>
+        <ng-template #posterPlaceholder>
+          <div class="poster placeholder" aria-hidden="true"></div>
+        </ng-template>
+      </div>
+      <div class="info-card">
+        <p class="eyebrow">Movie details</p>
+        <h1>{{ movie.title }}</h1>
+        <div class="meta-line">
+          <span>{{ year }}</span>
+          <span class="dot">•</span>
+          <span>{{ movie.voteAverage | number : '1.1-1' }}</span>
+          <span class="dot">•</span>
+          <span>{{ movie.runtime || '—' }} min</span>
+        </div>
+        <div class="genres">
+          <span *ngFor="let genre of movie.genres">{{ genre }}</span>
+        </div>
+        <p class="overview">{{ movie.overview }}</p>
+        <div class="actions">
+          <button type="button" (click)="watchlist.toggle(movie)">
+            {{ watchlist.has(movie.id) ? 'Remove from watchlist' : 'Add to watchlist' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section class="panel">
+      <h2>Top cast</h2>
+      <div class="cast">
+        <div class="cast-card" *ngFor="let member of movie.cast">
+          <div class="avatar">
+            <ng-container *ngIf="member.profilePath; else avatarPlaceholder">
+              <img
+                [src]="member.profilePath | posterUrl : 'w154'"
+                [alt]="member.name"
+                loading="lazy"
+                decoding="async"
+                referrerpolicy="no-referrer"
+              />
+            </ng-container>
+            <ng-template #avatarPlaceholder>
+              <div class="avatar placeholder" aria-hidden="true"></div>
+            </ng-template>
+          </div>
+          <div>
+            <p class="name">{{ member.name }}</p>
+            <p class="role">{{ member.character }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Recommended</h2>
+      <div class="carousel" *ngIf="movie.recommendations.length; else noRecs">
+        <app-movie-card
+          *ngFor="let rec of movie.recommendations; trackBy: trackById"
+          [movie]="rec"
+          [link]="['/movie', rec.id]"
+        />
+      </div>
+      <ng-template #noRecs>
+        <app-empty-state message="No recommendations yet." />
+      </ng-template>
+    </section>
+  </article>
+</section>

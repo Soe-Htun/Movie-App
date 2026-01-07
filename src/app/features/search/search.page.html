@@ -1,0 +1,80 @@
+<section class="search">
+  <header class="search-header">
+    <div>
+      <p class="eyebrow">Movie search</p>
+      <h1>Find something to watch</h1>
+      <p class="sub">Search by title, then narrow by year or rating.</p>
+    </div>
+    <div class="filters">
+      <label>
+        Title
+        <input
+          type="search"
+          [(ngModel)]="query"
+          (ngModelChange)="onFiltersChange()"
+          placeholder="Search movies..."
+        />
+      </label>
+      <label>
+        Year
+        <input
+          type="number"
+          inputmode="numeric"
+          [(ngModel)]="year"
+          (ngModelChange)="onFiltersChange()"
+          placeholder="e.g. 2022"
+        />
+      </label>
+      <label>
+        Min rating
+        <input
+          type="number"
+          min="0"
+          max="10"
+          step="0.5"
+          [(ngModel)]="minRating"
+          (ngModelChange)="onFiltersChange()"
+          placeholder="0-10"
+        />
+      </label>
+    </div>
+  </header>
+
+  <div class="status" *ngIf="facade.status() === 'idle'">
+    <app-empty-state message="Start typing to search TMDB." />
+  </div>
+
+  <div class="status" *ngIf="facade.status() === 'loading'">
+    <app-loading-state label="Searching TMDB..." />
+  </div>
+
+  <div class="status" *ngIf="facade.status() === 'error'">
+    <app-error-banner [message]="facade.error() || ''" (retry)="facade.retry()" />
+  </div>
+
+  <div class="status" *ngIf="facade.status() === 'empty'">
+    <app-empty-state message="No movies matched your filters." />
+  </div>
+
+  <section class="results" *ngIf="facade.status() === 'success'">
+    <div class="summary">
+      <p>{{ facade.results().length }} results</p>
+    </div>
+
+    <div class="grid">
+      <app-movie-card
+        *ngFor="let movie of facade.results(); trackBy: trackById"
+        [movie]="movie"
+        [link]="['/movie', movie.id]"
+        [showWatchlistAction]="true"
+        [inWatchlist]="watchlist.has(movie.id)"
+        (toggleWatchlist)="watchlist.toggle(movie)"
+      />
+    </div>
+
+    <div class="load-more" *ngIf="facade.page() < facade.totalPages()">
+      <button type="button" (click)="facade.loadMore()">Load more</button>
+      <app-loading-state *ngIf="facade.loadingMore()" label="Loading more..." />
+    </div>
+  </section>
+</section>

@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  color-scheme: dark;
+  --bg: #0c0c0e;
+  --bg-soft: #15161a;
+  --text: #f4f2ee;
+  --muted: rgba(244, 242, 238, 0.65);
+  --accent: #ffd56a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+  background: radial-gradient(circle at top, rgba(255, 213, 106, 0.08), transparent 45%),
+    radial-gradient(circle at 30% 20%, rgba(56, 150, 255, 0.08), transparent 40%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input {
+  font-family: inherit;
+}

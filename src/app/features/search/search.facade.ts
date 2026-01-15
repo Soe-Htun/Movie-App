@@ -49,7 +49,6 @@ export class SearchFacade {
   readonly status = signal<LoadStatus>('idle');
   readonly error = signal<string | null>(null);
   readonly results = signal<SearchResult['results']>([]);
-  readonly totalResults = signal(0);
   readonly totalPages = signal(0);
   readonly loadingMore = signal(false);
 
@@ -97,7 +96,6 @@ export class SearchFacade {
     this.status.set('idle');
     this.error.set(null);
     this.results.set([]);
-    this.totalResults.set(0);
     this.totalPages.set(0);
     this.loadingMore.set(false);
   }
@@ -140,7 +138,6 @@ export class SearchFacade {
   private applyResults(result: SearchResult, append: boolean): void {
     const nextResults = append ? [...this.results(), ...result.results] : result.results;
     this.results.set(nextResults);
-    this.totalResults.set(result.totalResults);
     this.totalPages.set(result.totalPages);
     this.loadingMore.set(false);
 

@@ -23,7 +23,6 @@ export interface MovieDetails extends MovieSummary {
 
 export interface SearchResult {
   page: number;
-  totalResults: number;
   totalPages: number;
   results: MovieSummary[];
 }

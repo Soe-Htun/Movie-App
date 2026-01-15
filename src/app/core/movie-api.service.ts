@@ -50,7 +50,6 @@ export class MovieApiService {
 
     return {
       page: response.page,
-      totalResults: response.total_results,
       totalPages: response.total_pages,
       results: response.results.map(this.mapSummary)
     };

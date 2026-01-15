@@ -27,10 +27,6 @@ export class WatchlistService {
     ]);
   }
 
-  remove(id: number): void {
-    this.setItems(this.itemsSignal().filter((item) => item.id !== id));
-  }
-
   has(id: number): boolean {
     return this.itemsSignal().some((item) => item.id === id);
   }

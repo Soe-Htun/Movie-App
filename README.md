@@ -2,6 +2,27 @@
 
 Angular movie search SPA for TMDB with a local watchlist.
 
+## Step-by-step setup
+
+1) Install dependencies:
+
+```bash
+npm install
+```
+
+2) Configure your TMDB API key in `src/environments/environment.ts`:
+
+- `tmdbApiKey`: set your TMDB v3 API key.
+- `useMock`: set `true` to load `public/mock/*.json` instead of live API data.
+
+3) Start the development server:
+
+```bash
+ng serve
+```
+
+4) Open the app at `http://localhost:4200/`.
+
 ## Reactivity choice
 
 Signals are used for state and view models across features. HTTP is handled with async/await while signals drive component rendering and caching behavior.
@@ -12,8 +33,6 @@ Update `src/environments/environment.ts`:
 
 - `tmdbApiKey`: set your TMDB v3 API key.
 - `useMock`: set `true` (or leave API key empty) to load `public/mock/*.json`.
-
-## Development server
 
 ## Development server
 

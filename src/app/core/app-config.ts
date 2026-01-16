@@ -12,7 +12,7 @@ export interface AppConfig {
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 
 export function provideAppConfig(): Provider {
-  const useMock = environment.useMock || !environment.tmdbApiKey;
+  const useMock = environment.useMock || (!environment.production && !environment.tmdbApiKey);
 
   return {
     provide: APP_CONFIG,
